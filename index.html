@@ -1,210 +1,126 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
-  <!-- 可修改：浏览器标签页标题 -->
-  <title>43102620.xyz</title>
-  <style>
-    /* ============================================================
-       占位页 · 单文件 · 无外部依赖 · 无 JavaScript
-       配色随系统深浅色自动切换（prefers-color-scheme）
-       ============================================================ */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 不让搜索引擎收录 -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#121212">
+<title>恒温箱 | 气温U的个人博客</title>
+<style>
+  :root {
+    --bg: #121212;
+    --hint: #e8e8e8;
+  }
 
-    :root {
-      /* 深色（默认） */
-      --bg: #090a0e;
-      --text: #f1f4f9;
-      --muted: rgba(241, 244, 249, 0.56);
-      --faint: rgba(241, 244, 249, 0.34);
-      --card-bg: rgba(255, 255, 255, 0.045);
-      --card-border: rgba(255, 255, 255, 0.10);
-      --card-top: rgba(255, 255, 255, 0.22);
-      --grid-line: rgba(255, 255, 255, 0.030);
-      --glow-a: rgba(99, 102, 241, 0.17);
-      --glow-b: rgba(56, 189, 248, 0.11);
-      --shadow: 0 32px 80px -32px rgba(0, 0, 0, 0.9);
-      --dot: #eab308;
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 视口垂直居中兜底 */
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    cursor: default;
+    user-select: none;
+  }
+
+  /* 极轻微的中央辉光，只为让纯黑不至于像“页面挂了” */
+  body::before {
+    content: "";
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 60vmin;
+    height: 60vmin;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255,255,255,0.028) 0%, rgba(255,255,255,0) 68%);
+    pointer-events: none;
+  }
+
+  .fade-in {
+    animation: fadeIn 1.8s ease-out both;
+  }
+
+  .standby {
+    position: relative;
+    display: block;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+                 "Liberation Mono", "Courier New", monospace;
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.22em;
+    /* 让字距补偿末位多出的空隙，视觉上真正居中 */
+    text-indent: 0.22em;
+    color: var(--hint);
+    opacity: 0.3;
+    white-space: nowrap;
+    animation: breathe 7s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 0.26; }
+    50%      { opacity: 0.34; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 0.3; }
+  }
+
+  @media (max-width: 420px) {
+    .standby {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-indent: 0.18em;
     }
+  }
 
-    /* 浅色模式 */
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f6f7fa;
-        --text: #0e1626;
-        --muted: rgba(14, 22, 38, 0.56);
-        --faint: rgba(14, 22, 38, 0.36);
-        --card-bg: rgba(255, 255, 255, 0.66);
-        --card-border: rgba(14, 22, 38, 0.075);
-        --card-top: rgba(255, 255, 255, 0.95);
-        --grid-line: rgba(14, 22, 38, 0.045);
-        --glow-a: rgba(99, 102, 241, 0.13);
-        --glow-b: rgba(56, 189, 248, 0.10);
-        --shadow: 0 30px 70px -34px rgba(14, 22, 38, 0.28);
-        --dot: #d99400;
-      }
-    }
-
-    * { box-sizing: border-box; }
-
-    html, body { height: 100%; }
-
-    body {
-      margin: 0;
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: clamp(24px, 6vw, 64px) clamp(18px, 5vw, 40px);
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
-                   Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      overflow-x: hidden;
-    }
-
-    /* 背景层一：两团柔和径向渐变光晕 */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background:
-        radial-gradient(60% 50% at 50% 0%,   var(--glow-a), transparent 70%),
-        radial-gradient(50% 45% at 15% 85%,  var(--glow-b), transparent 72%),
-        radial-gradient(45% 40% at 88% 78%,  var(--glow-a), transparent 75%);
-      pointer-events: none;
-    }
-
-    /* 背景层二：极淡细网格，边缘用遮罩淡出 */
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background-image:
-        linear-gradient(to right,  var(--grid-line) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-      background-size: 36px 36px;
-      -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 46%, #000 20%, transparent 78%);
-              mask-image: radial-gradient(ellipse 75% 65% at 50% 46%, #000 20%, transparent 78%);
-      pointer-events: none;
-    }
-
-    /* ---------- 玻璃卡片 ---------- */
-    .card {
-      position: relative;
-      width: 100%;
-      max-width: 620px;
-      padding: clamp(38px, 8vw, 72px) clamp(26px, 6vw, 64px) clamp(34px, 7vw, 60px);
-      text-align: center;
-      border-radius: 22px;
-      border: 1px solid var(--card-border);
-      background: var(--card-bg);
-      box-shadow: var(--shadow);
-      -webkit-backdrop-filter: blur(26px) saturate(150%);
-              backdrop-filter: blur(26px) saturate(150%);
-    }
-
-    /* 卡片顶部一道极淡高光，增加层次 */
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 12%;
-      right: 12%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--card-top), transparent);
-    }
-
-    /* ---------- 状态徽章 ---------- */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 13px 5px 11px;
-      margin-bottom: clamp(22px, 4vw, 32px);
-      border-radius: 999px;
-      border: 1px solid var(--card-border);
-      background: rgba(127, 127, 127, 0.07);
-      font-size: 12.5px;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-    }
-
-    .badge .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--dot);
-      box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.14);
-    }
-
-    /* ---------- 域名：视觉重点 ---------- */
-    .domain {
-      margin: 0;
-      font-size: clamp(2rem, 8.4vw, 4.1rem);
-      font-weight: 750;
-      line-height: 1.08;
-      letter-spacing: -0.035em;
-      word-break: break-word;
-    }
-
-    /* ---------- 文案 ---------- */
-    .welcome {
-      margin: clamp(20px, 3.5vw, 28px) 0 0;
-      font-size: 14.5px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .note {
-      margin: 12px 0 0;
-      font-size: 15px;
-      line-height: 1.8;
-      color: var(--muted);
-    }
-
-    /* ---------- 底部 ---------- */
-    .foot {
-      margin-top: clamp(36px, 7vw, 56px);
-      font-size: 11px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--faint);
-    }
-
-    /* 小屏收紧留白 */
-    @media (max-width: 420px) {
-      .card { border-radius: 18px; }
-      .welcome { letter-spacing: 0.16em; }
-    }
-  </style>
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in, .standby { animation: none; opacity: 0.3; }
+  }
+</style>
 </head>
 <body>
 
-  <main class="card">
-    <!-- 可修改：状态徽章文字 -->
-    <span class="badge"><span class="dot"></span>筹备中</span>
+  <div class="fade-in">
+    <div class="standby" role="status" aria-live="polite">[ SYSTEM STANDBY ]</div>
+  </div>
 
-    <!-- 可修改：域名（同时记得改 <title>） -->
-    <h1 class="domain">43102620.xyz</h1>
+<script>
+  (function () {
+    var ORIGINAL_TITLE = '恒温箱 | 气温U的个人博客';
+    var SUSPENDED_TITLE = '[ 已挂起 ]';
 
-    <!-- 可修改：欢迎语 -->
-    <p class="welcome">Welcome</p>
+    // 页面初始标题即使用常量写入，保证恢复时绝对一致
+    document.title = ORIGINAL_TITLE;
 
-    <!-- 可修改：说明文案 -->
-    <p class="note">个人博客筹备中，敬请期待</p>
-  </main>
+    function handleVisibility() {
+      document.title = document.hidden ? SUSPENDED_TITLE : ORIGINAL_TITLE;
+    }
 
-  <!-- 可修改：底部小字 -->
-  <footer class="foot">Coming soon</footer>
+    document.addEventListener('visibilitychange', handleVisibility);
 
+    // 兼容老浏览器：窗口失焦/聚焦也做一次兜底
+    window.addEventListener('blur', function () {
+      if (document.hidden) document.title = SUSPENDED_TITLE;
+    });
+    window.addEventListener('focus', function () {
+      if (!document.hidden) document.title = ORIGINAL_TITLE;
+    });
+
+    // 从 bfcache 返回时校正标题
+    window.addEventListener('pageshow', handleVisibility);
+  })();
+</script>
 </body>
 </html>
