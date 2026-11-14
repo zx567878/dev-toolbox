@@ -15,11 +15,13 @@ timezone: Asia/Shanghai
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://43102620.xyz
 root: /
-permalink: :year/:month/:day/:title/
+# 文章链接格式：用户指定为 posts/<文章id>.html（2026-11-14 定）
+# 注意：trailing_html 语义是反的 —— false 才会把 .html 去掉，必须保持 true
+permalink: posts/:id.html
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+  trailing_html: true # 必须 true，否则 hexo 会去掉链接里的 .html
 
 # Directory
 source_dir: source
