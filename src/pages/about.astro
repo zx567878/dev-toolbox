@@ -1,0 +1,14 @@
+---
+import { ABOUT_BODY, ABOUT_DESCRIPTION, NAV_ABOUT } from '../consts';
+import BlogPost from '../layouts/BlogPost.astro';
+
+const date = new Date('2026-11-14T00:00:00+08:00');
+---
+
+<BlogPost
+	title={NAV_ABOUT}
+	description={ABOUT_DESCRIPTION}
+	date={date}
+>
+	{ABOUT_BODY.map((paragraph) => <p>{paragraph}</p>)}
+</BlogPost>

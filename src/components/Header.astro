@@ -1,0 +1,69 @@
+---
+import { NAV_ABOUT, NAV_HOME, NAV_POSTS, SITE_TITLE } from '../consts';
+import HeaderLink from './HeaderLink.astro';
+---
+
+<header>
+	<nav>
+		<h2>
+			<a href="/">{SITE_TITLE}</a>
+		</h2>
+		<div class="internal-links">
+			<HeaderLink href="/">{NAV_HOME}</HeaderLink>
+			<HeaderLink href="/posts.html">{NAV_POSTS}</HeaderLink>
+			<HeaderLink href="/about.html">{NAV_ABOUT}</HeaderLink>
+		</div>
+	</nav>
+</header>
+<style>
+	header {
+		background: var(--bg);
+		border-bottom: 1px solid rgb(var(--gray-light));
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5em;
+		max-width: var(--measure);
+		margin: 0 auto;
+		padding: 0 1.25em;
+	}
+	h2 {
+		margin: 0;
+		font-size: 1em;
+		letter-spacing: 0.02em;
+	}
+	h2 a {
+		font-weight: 600;
+	}
+	.internal-links {
+		display: flex;
+		gap: 1.5em;
+	}
+	nav a {
+		display: inline-block;
+		padding: 1.15em 0;
+		margin-bottom: -1px;
+		border-bottom: 2px solid transparent;
+		color: rgb(var(--gray));
+		font-size: 0.95em;
+		text-decoration: none;
+	}
+	nav a:hover {
+		color: rgb(var(--black));
+	}
+	nav a.active {
+		color: rgb(var(--black));
+		border-bottom-color: var(--accent);
+	}
+	@media (max-width: 720px) {
+		nav {
+			gap: 1em;
+			padding: 0 1em;
+		}
+		.internal-links {
+			gap: 1em;
+		}
+	}
+</style>

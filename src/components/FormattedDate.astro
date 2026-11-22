@@ -1,0 +1,20 @@
+---
+interface Props {
+	date: Date;
+}
+
+const { date } = Astro.props;
+const d = new Date(date);
+
+// 固定按北京时间显示，避免构建机器时区不同导致日期漂移
+const text = new Intl.DateTimeFormat('zh-CN', {
+	timeZone: 'Asia/Shanghai',
+	year: 'numeric',
+	month: '2-digit',
+	day: '2-digit',
+})
+	.format(d)
+	.replace(/\//g, '.');
+---
+
+<time datetime={d.toISOString()}>{text}</time>

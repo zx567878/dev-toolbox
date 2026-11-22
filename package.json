@@ -1,0 +1,19 @@
+{
+  "name": "hengwenxiang",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "clean": "node -e \"const{rmSync}=require('node:fs');for(const p of ['dist','.astro'])rmSync(p,{recursive:true,force:true})\"",
+    "prebuild": "node -e \"const{rmSync}=require('node:fs');for(const p of ['dist','.astro','node_modules/.astro'])rmSync(p,{recursive:true,force:true})\""
+  },
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.6",
+    "astro": "^6.4.8"
+  }
+}

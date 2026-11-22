@@ -1,0 +1,21 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { BACK_HOME, NOT_FOUND_DESCRIPTION, NOT_FOUND_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={NOT_FOUND_TITLE} description={NOT_FOUND_DESCRIPTION} noindex />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>404</h1>
+			<p><a href="/">{BACK_HOME}</a></p>
+		</main>
+		<Footer />
+	</body>
+</html>
