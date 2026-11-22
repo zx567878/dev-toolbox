@@ -11,6 +11,8 @@
 | 附加 | `@astrojs/rss`、`@astrojs/sitemap` |
 | 托管 | GitHub Pages（仓库 `zx567878/dev-toolbox`） |
 | 发布 | push `main` → Actions 构建 → `gh-pages` 分支 |
+| 推送通道 | SSH（deploy key），不走 HTTPS，不弹凭据窗口 |
+| CI 依赖 | `actions/checkout@v7`、`actions/setup-node@v7`、`peaceiris/actions-gh-pages@v4` |
 
 ## 本地开发
 
@@ -48,6 +50,16 @@ git push
 
 推送后 GitHub Actions 自动构建并发布，无需本地构建。进度见仓库 Actions 页。
 
+### 推送通道
+
+远端是 `git@github.com:zx567878/dev-toolbox.git`，用**仓库部署密钥**认证：
+
+- 私钥：`C:\Users\ht156\.ssh\id_ed25519`（无密码短语，所以非交互环境也能直接推）
+- 该密钥只对这一个仓库有写权限，泄露不会波及账号内其他仓库
+- 换机器需要重新 `ssh-keygen` 并在仓库 Settings → Deploy keys 里加公钥（需勾选允许写入）
+
+**不要**把远端改回 `https://`——本机 HTTPS 到 github.com 会被干扰（TLS 中途断开），且会触发凭据弹窗。
+
 ## 目录
 
 ```
@@ -65,4 +77,4 @@ public/           favicon / img / robots.txt / .nojekyll
 1. **不要升级 Astro 到 7.x** —— 本机 Smart App Control 会拦截其原生 Markdown 解析器，构建直接失败。
 2. **不要删除 `public/.nojekyll`** —— 否则 `/_astro/` 下的字体全部 404。
 3. **不要改 `build.format`** —— 它是 `'file'`，保证文章 URL 为 `/posts/<id>.html`，改动会造成全站死链。
-4. **不要把大文件放进本仓库** —— 素材统一放 `D:/incubator/_assets/`，与仓库物理隔离。
+4. **不要把大文件放进本仓库** —— 素材统一放 `D:/incubator-old/_assets/`，与仓库物理隔离。
