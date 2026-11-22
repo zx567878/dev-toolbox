@@ -32,30 +32,34 @@ const { title, description, date, updated, image } = Astro.props;
 				max-width: none;
 				margin: 0;
 			}
-			.prose {
+			.post {
 				max-width: var(--measure);
 				margin: 0 auto;
 				color: rgb(var(--gray-dark));
 			}
-			.title {
+			/* 标题区：日期在上，标题在下，用一条细线收口 */
+			.post-head {
 				margin-bottom: 2.5em;
 				padding-bottom: 1.75em;
 				border-bottom: 1px solid rgb(var(--gray-light));
-				line-height: 1.2;
 			}
-			.title h1 {
-				margin: 0;
-				font-size: 1.9em;
-			}
-			.date {
-				margin-bottom: 0.7em;
+			.post-meta {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: baseline;
+				gap: 0 0.75em;
+				margin: 0 0 0.7em;
 				color: rgb(var(--gray));
 				font-size: 0.85em;
 				letter-spacing: 0.02em;
 			}
-			.last-updated-on {
-				margin-top: 0.2em;
+			.post-meta .updated {
 				opacity: 0.75;
+			}
+			.post-title {
+				margin: 0;
+				font-size: 1.9em;
+				line-height: 1.2;
 			}
 		</style>
 	</head>
@@ -63,17 +67,17 @@ const { title, description, date, updated, image } = Astro.props;
 	<body>
 		<Header />
 		<main>
-			<article>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={date} />
-							{updated && (
-								<div class="last-updated-on">{LAST_UPDATED} <FormattedDate date={updated} /></div>
-							)}
-						</div>
-						<h1>{title}</h1>
-					</div>
+			<article class="post">
+				<header class="post-head">
+					<p class="post-meta">
+						<FormattedDate date={date} />
+						{updated && (
+							<span class="updated">{LAST_UPDATED} <FormattedDate date={updated} /></span>
+						)}
+					</p>
+					<h1 class="post-title">{title}</h1>
+				</header>
+				<div class="post-body">
 					<slot />
 				</div>
 			</article>

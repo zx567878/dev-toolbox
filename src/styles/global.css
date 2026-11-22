@@ -132,7 +132,7 @@ p {
 }
 
 /* 文章正文段落之间留更大呼吸，普通页面保持紧凑 */
-.prose p {
+.post-body p {
 	margin-bottom: 1.6em;
 }
 
