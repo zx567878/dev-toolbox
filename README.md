@@ -67,6 +67,7 @@ src/
   components/     BaseHead Header Footer HeaderLink FormattedDate
   content/posts/  文章 Markdown
   layouts/        BlogPost 布局
+  lib/posts.ts    取已发布文章并倒序，全站唯一取数入口
   pages/          index posts about 404 rss.xml posts/[slug]
   styles/         global.css
 public/           favicon / img / robots.txt / .nojekyll
