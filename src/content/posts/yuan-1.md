@@ -1,5 +1,5 @@
 ---
-title: 建箱日志-1 建站工具选取
+title: 建箱日志-1
 date: 2026-11-22
 description: 从 Hexo 转向 Astro 的取舍，以及为什么不升到 7.x。
 ---
